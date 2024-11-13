@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Contacto</title>
-    <!-- Carga la biblioteca de QRCode desde el CDN -->
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         body {
@@ -51,18 +51,17 @@
 
 <script>
     function generateQRCode() {
-        // Borrar el contenido anterior del QR si existe
+    
         document.getElementById('qrcode').innerHTML = "";
 
-        // Obtener los valores del formulario
+     
         var name = document.getElementById('name').value;
         var email = document.getElementById('email').value;
         var phone = document.getElementById('phone').value;
         
-        // Crear un string con la información que se usará en el QR (formato vCard)
+
         var contactInfo = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nEMAIL:${email}\nTEL:${phone}\nEND:VCARD`;
-        
-        // Crear el QR con la biblioteca qrcode.js
+    
         new QRCode(document.getElementById("qrcode"), {
             text: contactInfo,
             width: 200,
