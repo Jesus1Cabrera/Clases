@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario con DB JC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .form-container, .data-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .data-list {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    .data-list li {
+      background: #f9f9f9;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Registro de Usuario</h1>
+    <form id="userForm">
+      <label for="name">Nombre</label>
+      <input type="text" id="name" placeholder="Ingrese su nombre" required />
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Ingrese su email" required />
+      <label for="age">Edad</label>
+      <input type="number" id="age" placeholder="Ingrese su edad" required />
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+
+  <div class="data-container">
+    <h2>Usuarios Registrados</h2>
+    <ul id="dataList" class="data-list"></ul>
+  </div>
+
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBe3nJD7qSee7rsHBBaca8pFdSNYuQ-10A",
+  authDomain: "bd-programacion-iii.firebaseapp.com",
+  databaseURL: "https://bd-programacion-iii-default-rtdb.firebaseio.com",
+  projectId: "bd-programacion-iii",
+  storageBucket: "bd-programacion-iii.firebasestorage.app",
+  messagingSenderId: "207163359287",
+  appId: "1:207163359287:web:a48163cad89511ad4d3fb2",
+  measurementId: "G-WWJTTCN8VQ"
+};
+
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+
+    const form = document.getElementById('userForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const age = document.getElementById('age').value;
+
+      try {
+        await push(ref(database, 'users'), { name, email, age });
+        alert('¡Usuario guardado exitosamente!');
+        form.reset();
+      } catch (error) {
+        console.error('Error al guardar el usuario:', error);
+        alert('Hubo un error al guardar los datos.');
+      }
+    });
+
+
+    const dataList = document.getElementById('dataList');
+    const usersRef = ref(database, 'users');
+    onValue(usersRef, (snapshot) => {
+      dataList.innerHTML = '';
+      const users = snapshot.val();
+      if (users) {
+        Object.entries(users).forEach(([key, user]) => {
+          const listItem = document.createElement('li');
+          listItem.textContent = `Nombre: ${user.name}, Email: ${user.email}, Edad: ${user.age}`;
+          dataList.appendChild(listItem);
+        });
+      } else {
+        dataList.innerHTML = '<li>No hay usuarios registrados.</li>';
+      }
+    });
+  </script>
+</body>
+</html>
