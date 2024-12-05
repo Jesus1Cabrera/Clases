@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Gráfico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        #chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario con Gráfico de Ventas</h1>
+        <!-- Formulario -->
+        <form id="sales-form">
+            <label for="month">Mes:</label>
+            <select id="month" name="month">
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+            </select>
+            <label for="sales">Ventas:</label>
+            <input type="number" id="sales" name="sales" placeholder="Cantidad de ventas" required>
+            <button type="submit">Añadir al gráfico</button>
+        </form>
+
+        <div id="chart-container">
+            <canvas id="sales-chart"></canvas>
+        </div>
+        <footer>Jesus Cabrera 100438630</footer>
+    </div>
+
+    <script>
+        const salesData = {
+            labels: [], // Meses
+            datasets: [{
+                label: 'Ventas por Mes',
+                data: [], // Ventas
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: salesData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+        const ctx = document.getElementById('sales-chart').getContext('2d');
+        const salesChart = new Chart(ctx, config);
+
+        const salesForm = document.getElementById('sales-form');
+        salesForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const month = document.getElementById('month').value;
+            const sales = parseInt(document.getElementById('sales').value);
+
+            if (!salesData.labels.includes(month)) {
+                salesData.labels.push(month);
+                salesData.datasets[0].data.push(sales);
+            } else {
+                const index = salesData.labels.indexOf(month);
+                salesData.datasets[0].data[index] = sales;
+            }
+            salesChart.update();
+            salesForm.reset();
+        });
+    </script>
+</body>
+</html>

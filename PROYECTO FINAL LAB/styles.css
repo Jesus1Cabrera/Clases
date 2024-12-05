@@ -1,0 +1,102 @@
+/* Estilos globales */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Contenedor principal */
+  .welcome-container {
+    text-align: center;
+  }
+  
+  /* Mensaje de bienvenida */
+  .welcome-message {
+    font-size: 2rem;
+    color: #004aad;
+    margin-bottom: 20px;
+  }
+  
+  /* Imagen central */
+  .image-container {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  
+  .welcome-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Botón debajo de la imagen */
+  .menu-button {
+    margin-top: 20px;
+    background-color: #004aad;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-button:hover {
+    background-color: #003580;
+  }
+  
+  /* Menú lateral */
+  .side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: #004aad;
+    color: white;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  /* Botón de cerrar menú */
+  .close-button {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  /* Opciones del menú */
+  .menu-options {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .menu-options li {
+    margin: 10px 0;
+  }
+  
+  .menu-options a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+  
+  .menu-options a:hover {
+    color: #00bfff;
+  }
+  

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Etiquetas HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        caption {
+            caption-side: top;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tabla de Etiquetas HTML</h1>
+    <h3>Jesus Cabrera 100438630</h3>
+    <table>
+        <caption>Lista de Etiquetas HTML, Descripción y Ejemplo</caption>
+        <thead>
+            <tr>
+                <th>Etiqueta</th>
+                <th>Descripción</th>
+                <th>Ejemplo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>&lt;html&gt;</td>
+                <td>Define el documento como HTML. Es la raíz del documento.</td>
+                <td>&lt;html lang="es"&gt; &lt;head&gt; &lt;title&gt;Ejemplo&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;Hola&lt;/h1&gt; &lt;/body&gt; &lt;/html&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;head&gt;</td>
+                <td>Contiene metadatos, como enlaces a hojas de estilo o scripts, y el título de la página.</td>
+                <td>&lt;head&gt; &lt;title&gt;Título&lt;/title&gt; &lt;meta charset="UTF-8"&gt; &lt;/head&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;title&gt;</td>
+                <td>Define el título que aparece en la pestaña del navegador.</td>
+                <td>&lt;title&gt;Mi Página Web&lt;/title&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;style&gt;</td>
+                <td>Contiene reglas CSS para el estilo de la página.</td>
+                <td>&lt;style&gt; body { background-color: lightblue; } &lt;/style&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;link&gt;</td>
+                <td>Vincula archivos externos como hojas de estilo o fuentes.</td>
+                <td>&lt;link rel="stylesheet" href="styles.css"&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;meta&gt;</td>
+                <td>Proporciona metadatos como el conjunto de caracteres o la descripción de la página.</td>
+                <td>&lt;meta charset="UTF-8"&gt; &lt;meta name="description" content="Descripción de la página"&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;script&gt;</td>
+                <td>Incrusta o enlaza scripts (JavaScript).</td>
+                <td>&lt;script src="app.js"&gt;&lt;/script&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;noscript&gt;</td>
+                <td>Proporciona un mensaje o contenido alternativo si JavaScript está deshabilitado.</td>
+                <td>&lt;noscript&gt;JavaScript está desactivado.&lt;/noscript&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;body&gt;</td>
+                <td>Contiene el contenido visible de la página.</td>
+                <td>&lt;body&gt; &lt;h1&gt;Contenido visible&lt;/h1&gt; &lt;/body&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;header&gt;</td>
+                <td>Define un encabezado para un documento o sección.</td>
+                <td>&lt;header&gt; &lt;h1&gt;Mi Sitio Web&lt;/h1&gt; &lt;/header&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;nav&gt;</td>
+                <td>Define una sección de navegación.</td>
+                <td>&lt;nav&gt; &lt;a href="#inicio"&gt;Inicio&lt;/a&gt; &lt;a href="#contacto"&gt;Contacto&lt;/a&gt; &lt;/nav&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;main&gt;</td>
+                <td>Contiene el contenido principal del documento.</td>
+                <td>&lt;main&gt; &lt;h2&gt;Sección principal&lt;/h2&gt; &lt;/main&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;article&gt;</td>
+                <td>Define un contenido independiente y auto-contenido.</td>
+                <td>&lt;article&gt; &lt;h2&gt;Artículo&lt;/h2&gt; &lt;p&gt;Este es un artículo.&lt;/p&gt; &lt;/article&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;section&gt;</td>
+                <td>Define una sección de contenido relacionada.</td>
+                <td>&lt;section&gt; &lt;h2&gt;Sección 1&lt;/h2&gt; &lt;p&gt;Contenido de la sección 1.&lt;/p&gt; &lt;/section&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;aside&gt;</td>
+                <td>Define contenido secundario o complementario, como una barra lateral.</td>
+                <td>&lt;aside&gt; &lt;h2&gt;Información adicional&lt;/h2&gt; &lt;p&gt;Detalles adicionales.&lt;/p&gt; &lt;/aside&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;footer&gt;</td>
+                <td>Define el pie de página.</td>
+                <td>&lt;footer&gt; &lt;p&gt;Copyright © 2024&lt;/p&gt; &lt;/footer&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;h1&gt; - &lt;h6&gt;</td>
+                <td>Define encabezados, donde &lt;h1&gt; es el más importante y &lt;h6&gt; el menos importante.</td>
+                <td>&lt;h1&gt;Título Principal&lt;/h1&gt; &lt;h2&gt;Subtítulo&lt;/h2&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;p&gt;</td>
+                <td>Define un párrafo.</td>
+                <td>&lt;p&gt;Este es un párrafo.&lt;/p&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;br&gt;</td>
+                <td>Inserta un salto de línea.</td>
+                <td>Este es un texto&lt;br&gt;y este es otro en una nueva línea.</td>
+            </tr>
+            <tr>
+                <td>&lt;hr&gt;</td>
+                <td>Inserta una línea horizontal.</td>
+                <td>&lt;hr&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;pre&gt;</td>
+                <td>Define texto preformateado, conservando espacios y saltos de línea.</td>
+                <td>&lt;pre&gt;Texto preformateado. Con espacios.&lt;/pre&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;blockquote&gt;</td>
+                <td>Define una cita en bloque.</td>
+                <td>&lt;blockquote&gt;Cita textual larga.&lt;/blockquote&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;ol&gt;</td>
+                <td>Define una lista ordenada.</td>
+                <td>&lt;ol&gt; &lt;li&gt;Elemento 1&lt;/li&gt; &lt;li&gt;Elemento 2&lt;/li&gt; &lt;/ol&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;ul&gt;</td>
+                <td>Define una lista desordenada.</td>
+                <td>&lt;ul&gt; &lt;li&gt;Elemento 1&lt;/li&gt; &lt;li&gt;Elemento 2&lt;/li&gt; &lt;/ul&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;li&gt;</td>
+                <td>Define un elemento de lista.</td>
+                <td>&lt;li&gt;Elemento de lista&lt;/li&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;dl&gt;</td>
+                <td>Define una lista de definiciones.</td>
+                <td>&lt;dl&gt; &lt;dt&gt;Término&lt;/dt&gt; &lt;dd&gt;Definición del término.&lt;/dd&gt; &lt;/dl&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;a&gt;</td>
+                <td>Define un hipervínculo.</td>
+                <td>&lt;a href="https://www.ejemplo.com"&gt;Visitar Ejemplo&lt;/a&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;img&gt;</td>
+                <td>Inserta una imagen.</td>
+                <td>&lt;img src="imagen.jpg" alt="Descripción de la imagen"&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;table&gt;</td>
+                <td>Define una tabla.</td>
+                <td>&lt;table&gt; &lt;tr&gt; &lt;td&gt;Celda&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</td>
+            </tr>
+            <tr>
+                <td>&lt;form&gt;</td>
+                <td>Define un formulario HTML.</td>
+                <td>&lt;form&gt; &lt;input type="text"&gt; &lt;input type="submit"&gt; &lt;/form&gt;</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

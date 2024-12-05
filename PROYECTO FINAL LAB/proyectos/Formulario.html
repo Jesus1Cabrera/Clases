@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Múltiples Páginas</title>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Jesus Cabrera 100438630</h3>
+        <h1>Formulario de Registro</h1>
+
+        <!-- Página 1: Datos Personales -->
+        <section class="section active" id="section-personal">
+            <h2>Datos Personales</h2>
+            <label>Nombre: <input type="text" id="nombre" required></label><br>
+            <label>Edad: <input type="number" id="edad" required></label><br>
+            <label>Identificación: <input type="text" id="identificacion" required></label><br>
+            <button onclick="nextSection()">Siguiente</button>
+        </section>
+
+        <!-- Página 2: Familiares -->
+        <section class="section" id="section-familiares">
+            <h2>Familiares</h2>
+            <div id="familiares-container">
+                <div class="familiar">
+                    <label>Nombre: <input type="text" id="fam-nombre" required></label><br>
+                    <label>Parentesco: <input type="text" id="fam-parentesco" required></label><br>
+                    <label>Edad: <input type="number" id="fam-edad" required></label>
+                </div>
+            </div>
+            <button type="button" onclick="addFamilyMember()">Agregar Otro Familiar</button>
+            <button onclick="prevSection()">Anterior</button>
+            <button onclick="nextSection()">Siguiente</button>
+        </section>
+
+        <!-- Página 3: Condiciones de Salud -->
+        <section class="section" id="section-salud">
+            <h2>Condiciones Pre-Existentes de Salud</h2>
+            <div id="condiciones-container">
+                <div class="condicion">
+                    <label>Enfermedad: <input type="text" id="cond-enfermedad" required></label><br>
+                    <label>Tiempo con la Enfermedad (años): <input type="number" id="cond-tiempo" required></label>
+                </div>
+            </div>
+            <button type="button" onclick="addHealthCondition()">Agregar Otra Condición</button>
+            <button onclick="prevSection()">Anterior</button>
+            <button onclick="nextSection()">Siguiente</button>
+        </section>
+
+        <!-- Página 4: Internamientos Realizados -->
+        <section class="section" id="section-internamientos">
+            <h2>Internamientos Realizados</h2>
+            <div id="internamientos-container">
+                <div class="internamiento">
+                    <label>Fecha: <input type="date" id="int-fecha" required></label><br>
+                    <label>Centro Médico: <input type="text" id="int-centro" required></label><br>
+                    <label>Diagnóstico: <input type="text" id="int-diagnostico" required></label>
+                </div>
+            </div>
+            <button type="button" onclick="addHospitalization()">Agregar Otro Internamiento</button>
+            <button onclick="prevSection()">Anterior</button>
+            <button onclick="nextSection()">Siguiente</button>
+        </section>
+
+        <!-- Página 5: Resumen de los Datos -->
+        <section class="section" id="section-resumen">
+            <h2>Resumen de los Datos</h2>
+            <div id="summary"></div>
+            <button onclick="prevSection()">Anterior</button>
+            <button onclick="submitData()">Guardar Todo</button>
+        </section>
+    </div>
+
+    <script>
+        let currentSection = 0;
+        const sections = document.querySelectorAll(".section");
+        let formData = {
+            personalData: {},
+            familyMembers: [],
+            healthConditions: [],
+            hospitalizations: []
+        };
+
+        function nextSection() {
+            saveCurrentSection();
+            if (currentSection < sections.length - 1) {
+                sections[currentSection].classList.remove("active");
+                currentSection++;
+                sections[currentSection].classList.add("active");
+                if (currentSection === sections.length - 1) {
+                    displaySummary();
+                }
+            }
+        }
+
+        function prevSection() {
+            if (currentSection > 0) {
+                sections[currentSection].classList.remove("active");
+                currentSection--;
+                sections[currentSection].classList.add("active");
+            }
+        }
+
+        function saveCurrentSection() {
+            if (currentSection === 0) {
+                formData.personalData = {
+                    nombre: document.getElementById("nombre").value,
+                    edad: document.getElementById("edad").value,
+                    identificacion: document.getElementById("identificacion").value
+                };
+            } else if (currentSection === 1) {
+                formData.familyMembers.push({
+                    nombre: document.getElementById("fam-nombre").value,
+                    parentesco: document.getElementById("fam-parentesco").value,
+                    edad: document.getElementById("fam-edad").value
+                });
+            } else if (currentSection === 2) {
+                formData.healthConditions.push({
+                    enfermedad: document.getElementById("cond-enfermedad").value,
+                    tiempo: document.getElementById("cond-tiempo").value
+                });
+            } else if (currentSection === 3) {
+                formData.hospitalizations.push({
+                    fecha: document.getElementById("int-fecha").value,
+                    centro: document.getElementById("int-centro").value,
+                    diagnostico: document.getElementById("int-diagnostico").value
+                });
+            }
+        }
+
+        function displaySummary() {
+            const summaryDiv = document.getElementById("summary");
+            summaryDiv.innerHTML = `
+                <h3>Datos Personales</h3>
+                <p>Nombre: ${formData.personalData.nombre}</p>
+                <p>Edad: ${formData.personalData.edad}</p>
+                <p>Identificación: ${formData.personalData.identificacion}</p>
+
+                <h3>Familiares</h3>
+                ${formData.familyMembers.map(fam => `<p>${fam.nombre} / ${fam.parentesco} / ${fam.edad}</p>`).join("")}
+
+                <h3>Condiciones de Salud</h3>
+                ${formData.healthConditions.map(cond => `<p>${cond.enfermedad} / ${cond.tiempo} años</p>`).join("")}
+
+                <h3>Internamientos Realizados</h3>
+                ${formData.hospitalizations.map(hosp => `<p>${hosp.fecha} / ${hosp.centro} / ${hosp.diagnostico}</p>`).join("")}
+            `;
+        }
+
+        function submitData() {
+            console.log("Datos guardados:", formData);
+            alert("Los datos se han guardado correctamente.");
+        }
+
+        function addFamilyMember() {
+            formData.familyMembers.push({
+                nombre: document.getElementById("fam-nombre").value,
+                parentesco: document.getElementById("fam-parentesco").value,
+                edad: document.getElementById("fam-edad").value
+            });
+        }
+
+        function addHealthCondition() {
+            formData.healthConditions.push({
+                enfermedad: document.getElementById("cond-enfermedad").value,
+                tiempo: document.getElementById("cond-tiempo").value
+            });
+        }
+
+        function addHospitalization() {
+            formData.hospitalizations.push({
+                fecha: document.getElementById("int-fecha").value,
+                centro: document.getElementById("int-centro").value,
+                diagnostico: document.getElementById("int-diagnostico").value
+            });
+        }
+    </script>
+</body>
+</html>
